@@ -7,7 +7,7 @@ import { ConnectStyle } from './styles/Connect.styled';
 export default function Connect() {
     const [currentAccount, setCurrentAccount] = useState("");
     const [userBalance, setUserBalance] = useState("");
-    const ERC20_DECIMALS = 18;
+    // const ERC20_DECIMALS = 18;
 
     const checkIfWalletIsConnected = async() =>{
         try {

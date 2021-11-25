@@ -1,11 +1,11 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import Header from '../components/Header';
-import {Button} from '../components/styles/Button.styled'
+// import {Button} from '../components/styles/Button.styled'
 import { Container, Flex } from '../components/styles/Helper';
 
 function Detail() {
-    let params = useParams();
+    // let params = useParams();
     return (
         <>
             <Header/>

@@ -92,7 +92,7 @@ export default function Home() {
                                 </select>
 
                                 <label>AskPrice</label>
-                                <input ref={formInput} type="text" name="askprice" value={askprice} onChange={(e)=>setAskPrice(e.target.value)} ref={form}/> 
+                                <input ref={formInput} type="text" name="askprice" value={askprice} onChange={(e)=>setAskPrice(e.target.value)}/> 
 
                                 <button>Add a product </button>
                             

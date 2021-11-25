@@ -1,4 +1,4 @@
-import React,{useEffect, useCallback} from 'react';
+import React,{useEffect} from 'react';
 import { ProductStyle} from './styles/Product.styled';
 import { Flex, Grid } from './styles/Helper';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
