@@ -7,14 +7,13 @@ import { Container, Flex } from '../components/styles/Helper';
 
 function Detail() {
     let params = useParams();
-    let product = getProduct(parseInt(params.id,10))
     return (
         <>
             <Header/>
             
             <Container>
                 <Flex>
-                    <img alt="" src={`/images/${product.image}`}></img>
+                    {/* <img alt="" src={`/images/${product.image}`}></img>
                     <div>
                         <Button>
                         Buy button 
@@ -25,9 +24,9 @@ function Detail() {
                         Sell button
                         </Button>
                         {product.bidprice}
-                    </div>
+                    </div> */}
                 </Flex>
-                <p>{product.name}</p>
+                {/* <p>{product.name}</p> */}
             </Container>
         </>
     )

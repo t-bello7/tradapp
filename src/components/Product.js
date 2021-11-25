@@ -1,6 +1,6 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useCallback} from 'react';
 import { ProductStyle} from './styles/Product.styled';
-import { Grid } from './styles/Helper';
+import { Flex, Grid } from './styles/Helper';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
 import Web3 from 'web3';
 import { newKitFromWeb3 } from '@celo/contractkit';
@@ -12,21 +12,19 @@ import { Link } from'react-router-dom';
 
 
 export default function Product({img,category,name,}) {
-
-    // const products = getProducts()
     const [allProducts, setAllProducts] = useState([]);
     const MPContractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
-    const displayProducts = async () =>{
-
+useEffect(()=>{     
+    const displayProducts =  async () =>{
         try {
             if (window.celo) {
                 const web3 = new Web3(window.celo)
                 const kit = newKitFromWeb3(web3);
                 const MPContract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
                 const products = await MPContract.methods.displayProduct().call();
-                console.log(products);
                 let productsCleaned = [];
+                console.log('hey')
 
                 products.forEach(product => {
                     productsCleaned.push({
@@ -41,7 +39,6 @@ export default function Product({img,category,name,}) {
                         sold: product.sold
                     });
                 });
-                console.log(productsCleaned)
                 setAllProducts(productsCleaned);
             }
         } catch (error){
@@ -50,24 +47,24 @@ export default function Product({img,category,name,}) {
         }
     }
 
-    // console.log(allProducts)
-
-    useEffect(() => {
-        displayProducts();
-    }, [])
+    displayProducts();
+    },[MPContractAddress]);
+   
 
     return (
-        <ProductStyle onLoad={displayProducts}>
+        <ProductStyle >
         {/* <ProductStyle> */}
+        <Grid>
+
             {allProducts.map((product)=>{
                 return(
-                
-                 <>
-                    <Grid>
+                    <Link to={`/detail/${product.id}`} key={product.id}>
+
                         <img src={product.image} alt=""></img>
+                        <Flex>
+
                         <h2> Lowest Ask </h2>
                         <p> {product.askprice}</p>
-
                         <div>
                             <h2> Sold </h2>
                             <p> {product.sold}</p>
@@ -76,9 +73,10 @@ export default function Product({img,category,name,}) {
                             <h2> Last Sale </h2>
                             <p> 300 </p>
                         </div>
-                    </Grid>
-                  </>)}        
+                        </Flex>
+                        </Link>)}        
                   )}   
+                </Grid>
 
                 {/* <Grid>
                   {products.map((product) => {
