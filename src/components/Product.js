@@ -4,10 +4,8 @@ import { Flex, Grid } from './styles/Helper';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
 import Web3 from 'web3';
 import { newKitFromWeb3 } from '@celo/contractkit';
-// import BigNumber from "bignumber.js";
 import { useState } from 'react/cjs/react.development';
 import _ from 'lodash';
-import { getProduct, getProducts } from '../utils/data';
 import { Link } from'react-router-dom';
 
 
@@ -43,7 +41,6 @@ useEffect(()=>{
             }
         } catch (error){
             console.error(error);
-            console.log('hey')
         }
     }
 
@@ -53,7 +50,6 @@ useEffect(()=>{
 
     return (
         <ProductStyle >
-        {/* <ProductStyle> */}
         <Grid>
 
             {allProducts.map((product)=>{
@@ -77,20 +73,6 @@ useEffect(()=>{
                         </Link>)}        
                   )}   
                 </Grid>
-
-                {/* <Grid>
-                  {products.map((product) => {
-                      return(
-                            <Link to={`/detail/${product.id}`} key={product.id}>
-                            <img alt="" src={`./images/${product.image}`}></img>
-                            <h2> {product.name} </h2>
-                            <p> {product.description} </p>
-                            <span>{ product.category} </span>
-                            </Link>
-                     
-                      )
-                  })}
-                  </Grid> */}
         </ProductStyle>
     )
 }

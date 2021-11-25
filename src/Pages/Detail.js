@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
-import { getProduct } from "../utils/data";
 import Header from '../components/Header';
 import {Button} from '../components/styles/Button.styled'
 import { Container, Flex } from '../components/styles/Helper';
