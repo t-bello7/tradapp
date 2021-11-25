@@ -11,9 +11,9 @@ export const Flex = styled.div`
     /* align-items: center; */
     height: 100%;
 
-    /* @media only screen and (max-width: ${({theme})=> theme.mobile}){
-        flex-direction:-column;
-    } */
+    @media only screen and (max-width: ${({theme})=> theme.mobile}){
+        flex-direction:column;
+    }
 `;
 
 export const Grid = styled.div`

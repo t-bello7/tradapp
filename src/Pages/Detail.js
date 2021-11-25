@@ -9,33 +9,27 @@ function Detail() {
     let params = useParams();
     let product = getProduct(parseInt(params.id,10))
     return (
-        <div>
+        <>
             <Header/>
             
             <Container>
                 <Flex>
+                    <img alt="" src={`/images/${product.image}`}></img>
                     <div>
-                        image
-                    </div>
-                    <div>
-
                         <Button>
                         Buy button 
                         </Button>
-                        # show lowest ask price
+                        {product.askprice}
                      
                         <Button>
-                        Sell button 
+                        Sell button
                         </Button>
-                        #show highest bid price
-                  
+                        {product.bidprice}
                     </div>
-
-                  
                 </Flex>
                 <p>{product.name}</p>
             </Container>
-        </div>
+        </>
     )
 }
 

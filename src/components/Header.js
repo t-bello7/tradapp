@@ -28,7 +28,7 @@ export default function Header() {
             <NavBar.Wrapper>
                 <Container>
                 <Flex>
-                    <NavBar.Logo> Logo </NavBar.Logo>
+                    {/* <NavBar.Logo> Logo </NavBar.Logo> */}
                     <NavBar.Items>
                         <NavBar.Item><Link to={'/'}>Home</Link></NavBar.Item>
                     </NavBar.Items>

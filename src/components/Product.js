@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { ProductStyle} from './styles/Product.styled';
 import { Grid } from './styles/Helper';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
@@ -13,20 +13,21 @@ import { Link } from'react-router-dom';
 
 export default function Product({img,category,name,}) {
 
-    const products = getProducts()
+    // const products = getProducts()
     const [allProducts, setAllProducts] = useState([]);
     const MPContractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
-    const displayProducts = async (e) =>{
-        e.preventDefault();
+    const displayProducts = async () =>{
 
         try {
             if (window.celo) {
-                const kit = newKitFromWeb3(Web3);
+                const web3 = new Web3(window.celo)
+                const kit = newKitFromWeb3(web3);
                 const MPContract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
-                const products = await MPContract.methods.displayProduct();
+                const products = await MPContract.methods.displayProduct().call();
                 console.log(products);
                 let productsCleaned = [];
+
                 products.forEach(product => {
                     productsCleaned.push({
                         id:_.uniqueId(),
@@ -40,24 +41,30 @@ export default function Product({img,category,name,}) {
                         sold: product.sold
                     });
                 });
-
+                console.log(productsCleaned)
                 setAllProducts(productsCleaned);
-                console.log(allProducts)
             }
         } catch (error){
-            // console.log(error);
+            console.error(error);
+            console.log('hey')
         }
     }
+
+    // console.log(allProducts)
+
+    useEffect(() => {
+        displayProducts();
+    }, [])
+
     return (
-        // <ProductStyle onLoad={displayProducts}>
-        <ProductStyle>
-            {/* {allProducts.map((product)=>{
-                return( */}
+        <ProductStyle onLoad={displayProducts}>
+        {/* <ProductStyle> */}
+            {allProducts.map((product)=>{
+                return(
                 
-                {/* // <div> */}
-                        {/* <img ></img> */}
-{/*         
+                 <>
                     <Grid>
+                        <img src={product.image} alt=""></img>
                         <h2> Lowest Ask </h2>
                         <p> {product.askprice}</p>
 
@@ -69,10 +76,11 @@ export default function Product({img,category,name,}) {
                             <h2> Last Sale </h2>
                             <p> 300 </p>
                         </div>
-                    </Grid> */}
-                  {/* </div>)}         */}
-                  {/* )}        */}
-                <Grid>
+                    </Grid>
+                  </>)}        
+                  )}   
+
+                {/* <Grid>
                   {products.map((product) => {
                       return(
                             <Link to={`/detail/${product.id}`} key={product.id}>
@@ -84,7 +92,7 @@ export default function Product({img,category,name,}) {
                      
                       )
                   })}
-                  </Grid>
+                  </Grid> */}
         </ProductStyle>
     )
 }

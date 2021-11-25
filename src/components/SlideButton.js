@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from './styles/Button.styled';
 import {Flex} from './styles/Helper';
 
-export default class SlideButton extends Component {
-    render() {
-        return (
+export default function SlideButton() {
+
+    return (
             <Flex>
-                <Button/>
-                <Button/>
+                <Button/> Place bid   <Button/>
+                <Button/> Buy Now  <Button/>s
             </Flex>
         )
     }
-}
+

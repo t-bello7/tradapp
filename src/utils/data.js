@@ -4,7 +4,9 @@ const ProductsData = [
         name:'Jagusa',
         image: 'cheverolet.jpg',
         description: 'A good car for sale',
-        category: 'cars'
+        category: 'cars',
+        askprice: 34,
+        bidprice: 35,
     },
 
     {
@@ -12,7 +14,9 @@ const ProductsData = [
         name:'Jagusa',
         image: 'cheverolet.jpg',
         description: 'A good car for sale',
-        category: 'cars'
+        category: 'cars',
+        askprice: 34,
+        bidprice: 35,
     },
 
     {
@@ -20,7 +24,9 @@ const ProductsData = [
         name:'Jagusa',
         image: 'cheverolet.jpg',
         description: 'A good car for sale',
-        category: 'cars'
+        category: 'cars',
+        askprice: 34,
+        bidprice: 35,
     },
 
     {
@@ -28,7 +34,9 @@ const ProductsData = [
         name:'Jagusa',
         image: 'cheverolet.jpg',
         description: 'A good car for sale',
-        category: 'cars'
+        category: 'cars',
+        askprice: 34,
+        bidprice: 35,
     },
 
     {
@@ -36,14 +44,18 @@ const ProductsData = [
         name:'Jagusa',
         image: 'cheverolet.jpg',
         description: 'A good car for sale',
-        category: 'cars'
+        category: 'cars',
+        askprice: 34,
+        bidprice: 35,
     },
     {
         id: 6,
         name:'Jagusa',
         image: 'cheverolet.jpg',
         description: 'A good car for sale',
-        category: 'cars'
+        category: 'cars',
+        askprice: 34,
+        bidprice: 35,
     }
 ]
 

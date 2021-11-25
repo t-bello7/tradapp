@@ -2,7 +2,7 @@ import React, {useState, useRef } from 'react';
 import Header from '../components/Header';
 import Product from '../components/Product';
 import {Button} from '../components/styles/Button.styled';
-import { Container, Flex, Grid } from '../components/styles/Helper'
+import { Container} from '../components/styles/Helper'
 import Connect from '../components/Connect';
 import Popup from '../components/Popup';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
@@ -32,23 +32,30 @@ export default function Home() {
       }
 
     const sellProduct = async(e) => {
-        e.preventDefault()
+        e.preventDefault();
         if (window.celo) {
             const web3 = new Web3(window.celo)
             const kit = newKitFromWeb3(web3);
             const MPContract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
-            try{
+            const accounts = await kit.web3.eth.getAccounts();
+            kit.defaultAccount = accounts[0]
             const params = [
-                name, 
+                name,
                 imageurl,
                 description,
                 category,
                 askprice,
             ]
-            const products = await MPContract.methods.addProduct(...params).send({ from:kit.defaultAccount })
+            
+            try {
+            const productsadd = await MPContract.methods.addProduct(...params).send({ from:kit.defaultAccount })
+            console.log(productsadd)
             } catch (error){
                 console.error(error);
             }
+        }
+        else{
+            console.log('Celo object doesnt exist')
         }
     }
     return (
@@ -65,30 +72,30 @@ export default function Home() {
                     </Button>
                     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
                         <form onSubmit={sellProduct} ref={form}>
-                            <div>
                                 <label>Name</label>
-                                <input type="text" name="name" placeholder="Name of product"  autoComplete="off" value={name} onChange={(e) => setName(e.target.value)} ref={form}/> 
+                                <input ref={formInput}  type="text" name="name" placeholder="Name of product"  autoComplete="off" value={name} onChange={(e) => setName(e.target.value)} /> 
 
                                 <label>ImageUrl</label>
-                                <input type="text" name="imageurl" placeholder="Enter Image url" autoComplete="off" value={imageurl} onChange={(e)=>setImageurl(e.target.value)} ref={form}/> 
+                                <input ref={formInput} type="text" name="imageurl" placeholder="Enter Image url" autoComplete="off" value={imageurl} onChange={(e)=>setImageurl(e.target.value)} /> 
 
                                 <label>Description</label>
-                                <input type="textarea" name="description" placeholder="Description" autoComplete="off" onKeyPressCapture={enableNewline}  value={description} onChange={(e)=>setDescription(e.target.value)} ref={form}/>
+                                <input ref={formInput}  type="textarea" name="description" placeholder="Description" autoComplete="off" onKeyPressCapture={enableNewline}  value={description} onChange={(e)=>setDescription(e.target.value)} />
 
                                 <label>Category</label>
                                 <select 
+                                    ref={formInput} 
                                     value={category}
-                                    onChange={(e)=> setCategory(e.target.value)} ref={form}>
+                                    onChange={(e)=> setCategory(e.target.value)} >
                                     <option value="cars">Cars</option>
                                     <option value="gift_cards">Gift Cards</option>
                                     <option value="collectibles">Collectibles</option>
                                 </select>
 
                                 <label>AskPrice</label>
-                                <input type="text" name="askprice" value={askprice} onChange={(e)=>setAskPrice(e.target.value)} ref={form}/> 
+                                <input ref={formInput} type="text" name="askprice" value={askprice} onChange={(e)=>setAskPrice(e.target.value)} ref={form}/> 
 
                                 <button>Add a product </button>
-                            </div>
+                            
                         </form>
                     </Popup>    
                     </div>

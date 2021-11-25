@@ -29,7 +29,6 @@ export default function Connect() {
             const accounts = await kit.web3.eth.getAccounts();
             kit.defaultAccount = accounts[0]
             setCurrentAccount(accounts[0]);
-            // console.log(currentAccount)
             const totalBalance = await kit.getTotalBalance(kit.defaultAccount);
             const cUSDBalance = totalBalance.cUSD.toNumber() / 1E18;
             setUserBalance(cUSDBalance);
@@ -37,10 +36,10 @@ export default function Connect() {
         }   catch (error){
             const message = error.message || "";
             console.error(message)
-            if (!message.match(/Already prcoessing/)) { throw error};
+            // if (!message.match(/Already processing/)) { throw error};
 
-            const href = window.location.href;
-            console.error(href)
+            // const href = window.location.href;
+            // console.error(href)
         }
     }
     
