@@ -5,12 +5,12 @@ export const NavBar = {
         flex: 1;
         align-self: flex-start;
         padding: 1rem 3rem;
-        display: flex;
+        /* display: flex;gu */
         justify-content: space-between;
         align-items: center;
         background-color:#141920;
         color: #fff;
-        width: 100%;
+        /* width: 100%; */
     `,
     Logo: styled.h1`
         padding: 0.5rem 1rem;
@@ -29,7 +29,7 @@ export const NavBar = {
 export const MobileNavBar = {
     Wrapper: styled(NavBar.Wrapper)`
         position: fixed;
-        width: 100vh;
+        width: 100%;
         bottom: 0;
         justify-content: center;
     `,

@@ -15,4 +15,5 @@ export const InnerStyle = styled.div`
     width: 100%;
     max-width: 640px;
     background-color: #fff;
+    color: #000;
 `;

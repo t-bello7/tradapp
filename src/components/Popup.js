@@ -1,5 +1,5 @@
 import React from 'react';
-import {Flex} from './styles/helper';
+import {Flex} from './styles/Helper';
 import {PopupStyle, InnerStyle} from './styles/Popup.styled';
 
 export default function Popup(props) {

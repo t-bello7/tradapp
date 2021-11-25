@@ -1,8 +1,9 @@
 import { newKitFromWeb3 } from '@celo/contractkit';
 import React,{ useEffect, useState} from 'react';
 import Web3 from 'web3';
-import { Container } from './styles/helper';
-
+import { Container } from './styles/Helper';
+import {Button}  from './styles/Button.styled';
+import { ConnectStyle } from './styles/Connect.styled';
 export default function Connect() {
     const [currentAccount, setCurrentAccount] = useState("");
     const [userBalance, setUserBalance] = useState("");
@@ -34,30 +35,32 @@ export default function Connect() {
             setUserBalance(cUSDBalance);
 
         }   catch (error){
-            console.error(error)
+            const message = error.message || "";
+            console.error(message)
+            if (!message.match(/Already prcoessing/)) { throw error};
+
+            const href = window.location.href;
+            console.error(href)
         }
     }
     
     useEffect(() =>{
         checkIfWalletIsConnected();
-        connectWallet();
+        // connectWallet();
     }, [])
     return (
         <Container>
+            <ConnectStyle.Wrapper>
             { !currentAccount && (
-                <div>
-                    <p> Connect your wallet </p>
-
-                    {/* <button onClick={connectWallet}>
-                        Connect Wallect
-                    </button> */}
-
-                </div>
+                <Button onClick={connectWallet}>
+                    Connect Wallect
+                </Button>
             )
             }
             <div>
                     You have {userBalance} cusd
             </div>
+            </ConnectStyle.Wrapper>
         </Container>
     )
 }

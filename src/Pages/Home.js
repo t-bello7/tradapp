@@ -1,8 +1,8 @@
 import React, {useState, useRef } from 'react';
 import Header from '../components/Header';
 import Product from '../components/Product';
-import Button from '../components/Button';
-import { Container, Flex, Grid } from '../components/styles/helper'
+import {Button} from '../components/styles/Button.styled';
+import { Container, Flex, Grid } from '../components/styles/Helper'
 import Connect from '../components/Connect';
 import Popup from '../components/Popup';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
@@ -34,7 +34,6 @@ export default function Home() {
     const sellProduct = async(e) => {
         e.preventDefault()
         if (window.celo) {
-            
             const web3 = new Web3(window.celo)
             const kit = newKitFromWeb3(web3);
             const MPContract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
@@ -57,17 +56,14 @@ export default function Home() {
             <Header/>
             <Connect/>
             <Container>
-                <Flex>
-                    <div>
+                <div> 
                     <h4>
                         Buy & Sell Gift Cards, Street Wears, Sneakers, Collectibles
                     </h4>
-                    <Button/>
-                    <button onClick={()=> setButtonPopup(true)}>
+                    <Button onClick={()=> setButtonPopup(true)}>
                         sell
-                    </button>
+                    </Button>
                     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                        {/* <h4> Sell A Product </h4> */}
                         <form onSubmit={sellProduct} ref={form}>
                             <div>
                                 <label>Name</label>
@@ -94,15 +90,10 @@ export default function Home() {
                                 <button>Add a product </button>
                             </div>
                         </form>
-                    </Popup>
+                    </Popup>    
                     </div>
-                    <div>
-                        Video about Trada.
-                    </div>
-                </Flex>
-                <Grid>
-                    <Product/>  
-                </Grid>
+                
+                <Product/>  
             </Container>
         </>)
 }

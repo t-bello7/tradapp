@@ -1,14 +1,19 @@
 import React from 'react';
 import { ProductStyle} from './styles/Product.styled';
-import { Flex } from './styles/helper';
+import { Grid } from './styles/Helper';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
 import Web3 from 'web3';
 import { newKitFromWeb3 } from '@celo/contractkit';
+// import BigNumber from "bignumber.js";
 import { useState } from 'react/cjs/react.development';
 import _ from 'lodash';
+import { getProduct, getProducts } from '../utils/data';
+import { Link } from'react-router-dom';
+
+
 export default function Product({img,category,name,}) {
 
-
+    const products = getProducts()
     const [allProducts, setAllProducts] = useState([]);
     const MPContractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
@@ -44,14 +49,15 @@ export default function Product({img,category,name,}) {
         }
     }
     return (
-        <ProductStyle onLoad={displayProducts}>
-            {allProducts.map((product)=>{
-                return(
+        // <ProductStyle onLoad={displayProducts}>
+        <ProductStyle>
+            {/* {allProducts.map((product)=>{
+                return( */}
                 
-                <div>
+                {/* // <div> */}
                         {/* <img ></img> */}
-        
-                    <Flex>
+{/*         
+                    <Grid>
                         <h2> Lowest Ask </h2>
                         <p> {product.askprice}</p>
 
@@ -63,9 +69,22 @@ export default function Product({img,category,name,}) {
                             <h2> Last Sale </h2>
                             <p> 300 </p>
                         </div>
-                    </Flex>
-                  </div>)}        
-                  )}       
+                    </Grid> */}
+                  {/* </div>)}         */}
+                  {/* )}        */}
+                <Grid>
+                  {products.map((product) => {
+                      return(
+                            <Link to={`/detail/${product.id}`} key={product.id}>
+                            <img alt="" src={`./images/${product.image}`}></img>
+                            <h2> {product.name} </h2>
+                            <p> {product.description} </p>
+                            <span>{ product.category} </span>
+                            </Link>
+                     
+                      )
+                  })}
+                  </Grid>
         </ProductStyle>
     )
 }

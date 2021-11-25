@@ -1,6 +1,6 @@
 import React from 'react'
 import SlideButton from './components/styles/SlideButton';
-import {Flex} from './styles/helper';
+import {Flex} from './styles/Helper';
 export default function Payment() {
     return (
         <div>

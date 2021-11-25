@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import { Link } from'react-router-dom';
-import { NavBar,MobileNavBar } from './styles/Header.styled';
-import { Container } from './styles/helper';
+import { NavBar,MobileNavBar} from './styles/Header.styled';
+import { Container, Flex  } from './styles/Helper';
 import SearchBar from './SearchBar';
 import { FiHome } from 'react-icons/fi';
 
@@ -23,27 +23,38 @@ export default function Header() {
     const isMobile = windowDimension <= 640;
 
     return (
-        <Container>
+        <div>
             { !isMobile ? (
             <NavBar.Wrapper>
-            <NavBar.Logo> Logo </NavBar.Logo>
-            <NavBar.Items>
-                <NavBar.Item><Link to={'/'}>Home</Link></NavBar.Item>
-            </NavBar.Items>
-            </NavBar.Wrapper>) : (
+                <Container>
+                <Flex>
+                    <NavBar.Logo> Logo </NavBar.Logo>
+                    <NavBar.Items>
+                        <NavBar.Item><Link to={'/'}>Home</Link></NavBar.Item>
+                    </NavBar.Items>
+                </Flex>
+                </Container>
+            </NavBar.Wrapper>
+            ) : (
             <MobileNavBar.Wrapper>
                 {/* <MobileNavBar.Logo> Logo </MobileNavBar.Logo> */}
                 <MobileNavBar.Items>
-                    <MobileNavBar.Item> 
-                        <MobileNavBar.Icon>
-                            <FiHome size={16}/>
-                        </MobileNavBar.Icon>
-                        Home  
+                <Link to={'/'}>  
+
+                    <MobileNavBar.Item>
+                     
+                            <MobileNavBar.Icon>
+                                
+                                <FiHome size={16}/>
+                            </MobileNavBar.Icon>
+                                Home  
                     </MobileNavBar.Item>
+                    </Link>
+
                 </MobileNavBar.Items>
                 <SearchBar/>
             </MobileNavBar.Wrapper>
             )}        
-        </Container>
+            </div>
         )
 }
