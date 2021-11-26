@@ -1,18 +1,17 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import { ProductStyle} from './styles/Product.styled';
-import { Flex, Grid } from './styles/Helper';
+import { Grid } from './styles/Helper';
 import marketplaceAbi from '../utils/Marketplace.abi.json';
 import Web3 from 'web3';
 import { newKitFromWeb3 } from '@celo/contractkit';
-import { useState } from 'react/cjs/react.development';
 import _ from 'lodash';
 import { Link } from'react-router-dom';
 
 
-export default function Product({img,category,name,}) {
+export default function Product() {
     const [allProducts, setAllProducts] = useState([]);
     const MPContractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-
+ 
 useEffect(()=>{     
     const displayProducts =  async () =>{
         try {
@@ -47,29 +46,25 @@ useEffect(()=>{
     displayProducts();
     },[MPContractAddress]);
    
-
+  
+   
     return (
         <ProductStyle >
         <Grid>
-
             {allProducts.map((product)=>{
                 return(
-                    <Link to={`/detail/${product.id}`} key={product.id}>
+                    <Link to={`/detail/${product.id}`} key={product.id} state={product}>
 
                         <img src={product.image} alt=""></img>
-                        <Flex>
-
-                        <h2> Lowest Ask </h2>
-                        <p> {product.askprice}</p>
                         <div>
-                            <h2> Sold </h2>
-                            <p> {product.sold}</p>
+                            <h2> Lowest Ask </h2>
+                            <span> {product.askprice}</span>
                         </div>          
                         <div>
-                            <h2> Last Sale </h2>
-                            <p> 300 </p>
-                        </div>
-                        </Flex>
+                            <h2> Sold </h2>
+                            <span> {product.sold}</span>
+                        </div>          
+                        
                         </Link>)}        
                   )}   
                 </Grid>

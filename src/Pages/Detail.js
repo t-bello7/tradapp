@@ -1,31 +1,42 @@
-import React from 'react';
-// import { useParams } from "react-router-dom";
+import React, {useState} from 'react';
+import { useLocation } from "react-router-dom";
 import Header from '../components/Header';
-// import {Button} from '../components/styles/Button.styled'
+import {Button} from '../components/styles/Button.styled';
 import { Container, Flex } from '../components/styles/Helper';
+import Popup from '../components/Popup';
+import Payment from '../components/Payment';
 
-function Detail() {
-    // let params = useParams();
+function Detail(props) {
+    const [sellPopup, setSellPopup] = useState(false);
+    const [buyPopup, setBuyPopup] = useState(false);
+    
+    const location = useLocation();
+    const  product  = location.state
     return (
         <>
             <Header/>
-            
             <Container>
                 <Flex>
-                    {/* <img alt="" src={`/images/${product.image}`}></img>
-                    <div>
-                        <Button>
+                <div>
+                    <Button onClick={()=> setBuyPopup(true)}>
                         Buy button 
-                        </Button>
+                    </Button>
                         {product.askprice}
+                    <Popup trigger={buyPopup} setTrigger={setBuyPopup}>
+                        <Payment image={product.image}/>
+                    </Popup>
                      
-                        <Button>
+                    <Button onClick= {()=>setSellPopup(true)}>
                         Sell button
-                        </Button>
+                    </Button>
                         {product.bidprice}
-                    </div> */}
+                    <Popup trigger={sellPopup} setTrigger={setSellPopup}>
+                        <Payment image={product.image}/>
+                    </Popup>
+                    </div>
+                    <img alt="" src={product.image}></img>
                 </Flex>
-                {/* <p>{product.name}</p> */}
+                <p>{product.name}</p>
             </Container>
         </>
     )

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Detail from './Pages/Detail';
 import Home from './Pages/Home';
-import PaymentPortal from './Pages/PaymentPortal';
 import GlobalStyles from './components/styles/Global';
 import Page404 from './Pages/Page404';
 
@@ -20,11 +19,9 @@ function App() {
       <GlobalStyles/>
       <BrowserRouter>
         <Routes>
-            <Route path='/detail/:id' element={<Detail/>} />
-            <Route path='/portal' element={<PaymentPortal/>} />
+            <Route path='/detail/:productid' element={<Detail />} />
             <Route path='/' element={<Home/>}/>
             <Route path="*" element={<Page404/>}> </Route> 
-
         </Routes>
       </BrowserRouter>
       </ThemeProvider>

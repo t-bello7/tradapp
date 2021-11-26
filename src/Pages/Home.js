@@ -71,6 +71,7 @@ export default function Home() {
                         sell
                     </Button>
                     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                        
                         <form onSubmit={sellProduct} ref={form}>
                                 <label>Name</label>
                                 <input ref={formInput}  type="text" name="name" placeholder="Name of product"  autoComplete="off" value={name} onChange={(e) => setName(e.target.value)} /> 
@@ -93,9 +94,7 @@ export default function Home() {
 
                                 <label>AskPrice</label>
                                 <input ref={formInput} type="text" name="askprice" value={askprice} onChange={(e)=>setAskPrice(e.target.value)}/> 
-
                                 <button>Add a product </button>
-                            
                         </form>
                     </Popup>    
                     </div>
