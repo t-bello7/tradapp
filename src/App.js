@@ -5,6 +5,7 @@ import Detail from './Pages/Detail';
 import Home from './Pages/Home';
 import GlobalStyles from './components/styles/Global';
 import Page404 from './Pages/Page404';
+import { Helmet } from 'react-helmet';
 
 const theme = {
   colors:{
@@ -17,6 +18,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
+      <Helmet>
+        <title> Trada - a platform for trading for collectibles, giftcards and valuable items. </title>
+      </Helmet>
       <BrowserRouter>
         <Routes>
             <Route path='/detail/:productid' element={<Detail />} />

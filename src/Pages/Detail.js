@@ -7,7 +7,7 @@ import Popup from '../components/Popup';
 import Payment from '../components/Payment';
 
 function Detail(props) {
-    const [sellPopup, setSellPopup] = useState(false);
+    // const [sellPopup, setSellPopup] = useState(false);
     const [buyPopup, setBuyPopup] = useState(false);
     
     const location = useLocation();
@@ -19,20 +19,20 @@ function Detail(props) {
                 <Flex>
                 <div>
                     <Button onClick={()=> setBuyPopup(true)}>
-                        Buy button 
+                        Buy 
                     </Button>
                         {product.askprice}
                     <Popup trigger={buyPopup} setTrigger={setBuyPopup}>
-                        <Payment image={product.image}/>
+                        <Payment image={product.image} askprice = {product.askprice}/>
                     </Popup>
                      
-                    <Button onClick= {()=>setSellPopup(true)}>
+                    {/* <Button onClick= {()=>setSellPopup(true)}>
                         Sell button
-                    </Button>
-                        {product.bidprice}
-                    <Popup trigger={sellPopup} setTrigger={setSellPopup}>
-                        <Payment image={product.image}/>
-                    </Popup>
+                    </Button> */}
+                        {/* {product.bidprice} */}
+                    {/* <Popup trigger={sellPopup} setTrigger={setSellPopup}>
+                        <Payment image={product.image} bidprice= {product.bidprice}/>
+                    </Popup> */}
                     </div>
                     <img alt="" src={product.image}></img>
                 </Flex>
